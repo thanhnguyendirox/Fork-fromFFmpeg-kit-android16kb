@@ -1,5 +1,11 @@
 #!/bin/bash
-
+# SET ANDROID NDK PATH AND TOOLCHAIN for CMake
+export ANDROID_NDK=/Users/thanhnguyen/Library/Android/sdk/ndk/27.0.12077973
+export TOOLCHAIN=$ANDROID_NDK/toolchains/llvm/prebuilt/darwin-x86_64
+export PATH=$TOOLCHAIN/bin:$PATH
+export CC=$TOOLCHAIN/bin/aarch64-linux-android24-clang
+export CXX=$TOOLCHAIN/bin/aarch64-linux-android24-clang++
+export APP_ALLOW_MISSING_DEPS=true
 if [[ -z ${ANDROID_SDK_ROOT} ]]; then
   echo -e "\n(*) ANDROID_SDK_ROOT not defined\n"
   exit 1
