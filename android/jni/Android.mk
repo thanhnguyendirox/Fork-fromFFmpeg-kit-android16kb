@@ -1,6 +1,9 @@
 MY_LOCAL_PATH := $(call my-dir)
 $(call import-add-path, $(MY_LOCAL_PATH))
-
+# Set global LDFLAGS for all modules
+APP_LDFLAGS += -Wl,-z,max-page-size=16384
+APP_LDFLAGS += -Wl,-z,common-page-size=16384
+APP_SUPPORT_FLEXIBLE_PAGE_SIZES := true
 MY_ARMV7 := false
 MY_ARMV7_NEON := false
 ifeq ($(TARGET_ARCH_ABI), armeabi-v7a)
@@ -59,6 +62,7 @@ endif
 include $(CLEAR_VARS)
 LOCAL_ARM_MODE := $(MY_ARM_MODE)
 LOCAL_MODULE := ffmpegkit_abidetect
+LOCAL_LDFLAGS += -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384
 LOCAL_SRC_FILES := ffmpegkit_abidetect.c
 LOCAL_CFLAGS := -Wall -Wextra -Werror -Wno-unused-parameter -DFFMPEG_KIT_${MY_ARCH_FLAGS}
 LOCAL_C_INCLUDES := $(FFMPEG_INCLUDES)

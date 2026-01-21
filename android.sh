@@ -6,6 +6,8 @@ export PATH=$TOOLCHAIN/bin:$PATH
 export CC=$TOOLCHAIN/bin/aarch64-linux-android24-clang
 export CXX=$TOOLCHAIN/bin/aarch64-linux-android24-clang++
 export APP_ALLOW_MISSING_DEPS=true
+export LDFLAGS="$LDFLAGS -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384"
+
 if [[ -z ${ANDROID_SDK_ROOT} ]]; then
   echo -e "\n(*) ANDROID_SDK_ROOT not defined\n"
   exit 1

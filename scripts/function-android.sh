@@ -3,7 +3,7 @@
 source "${BASEDIR}/scripts/function.sh"
 
 prepare_inline_sed
-
+export LDFLAGS="$LDFLAGS -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384"
 enable_default_android_architectures() {
   ENABLED_ARCHITECTURES[ARCH_ARM_V7A]=1
   ENABLED_ARCHITECTURES[ARCH_ARM_V7A_NEON]=1
